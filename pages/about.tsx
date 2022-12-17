@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
+//import Link.js
 import {Link} from '../components/Link'
 import {Headline} from '../components/Headline'
 
@@ -17,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Headline title = "indexpage"/>
+      <Headline title = "aboutpage"/>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -35,7 +36,7 @@ export default function Home() {
               />
             </a>
           </div>
-        
+
 
         <div className={styles.center}>
           <Image
@@ -55,10 +56,10 @@ export default function Home() {
               priority
             />
           </div>
-        
-        <Link />
-        
         </div>
+
+        
+      <Link/>
       </main>
     </>
   )
