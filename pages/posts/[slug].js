@@ -1,9 +1,10 @@
 import fs from 'fs';
+import matter from 'gray-matter';
 
 export async function getStaticProps({ params }) {
     const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
-    console.log(file);
-    return { props: { post: '' } };
+    const { data, content } = matter(file);
+    return { props: { frontMatter: data, content } };
   }
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
@@ -19,8 +20,14 @@ export async function getStaticPaths() {
   };
 }
 
-const Post = () => {
-  return <div>コンテンツ</div>;
-};
+const Post = ({ frontMatter, content }) => {
+    return (
+      <div>
+        <h1>{frontMatter.title}</h1>
+        <div>{content}</div>
+      </div>
+    );
+  };
+  
 
 export default Post;
