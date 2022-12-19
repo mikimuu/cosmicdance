@@ -2,6 +2,8 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import {marked} from 'marked';
 import markdownit from 'markdown-it';
+import Image from 'next/image';
+
 
 
 export async function getStaticProps({ params }) {
@@ -25,9 +27,16 @@ export async function getStaticPaths() {
 
 const Post = ({ frontMatter, content }) => {
     return (
-      <div className='prose'>
-        <h1>{frontMatter.title}</h1>
-        <div dangerouslySetInnerHTML={{__html:marked(content)}}></div>
+      <div className='prose prose-lg max-w-none'>
+        <Image
+            src={'/${frontMatter.image}'}
+            alt={frontMatter.title}
+            width={1000}
+            height={500}
+            />
+        <h1 className='mt-12'>{frontMatter.title}</h1>
+        <span>{frontMatter.date}</span>
+        <div dengerouslySetInnerHTML={{__html:marked(content)}}></div>
       </div>
     );
   };
