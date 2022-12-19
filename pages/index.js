@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 import {Headline} from '../components/Headline'
 import Header from '../components/header'
 import {Main} from '../components/main'
-import { ReactDOM } from 'react'
+import ReactDOM from 'react'
 import App from '../components/app'
 
 ReactDOM.render(
