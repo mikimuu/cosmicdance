@@ -3,9 +3,9 @@ import matter from 'gray-matter';
 
 export async function getStaticPaths() {
     const files = fs.readdirSync('posts');
-    const paths = files.map((fileName) => ({
+    const paths = files.map((filename) => ({
       params: {
-        slug: fileName.replace(/\.md$/, ''),
+        slug: filename.replace(/\.md$/, ''),
       },
     }));
     console.log('paths:', paths);
