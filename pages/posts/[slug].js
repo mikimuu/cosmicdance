@@ -1,34 +1,27 @@
-import fs from 'fs';
-import matter from 'gray-matter';
+import fs from 'fs'
 
-export async function getStaticPaths() {
-    const files = fs.readdirSync('posts');
-    const paths = files.map((filename) => ({
-      params: {
-        slug: filename.replace(/\.md$/, ''),
-      },
-    }));
-    console.log('paths:', paths);
-    return {
-      paths,
-      fallback: false,
-    };
-  }
-
-export async function getStaticProps({ params }) {
-  const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
-  const { data, content } = matter(file);
-  return { props: { frontMatter: data, content } };
+export async function getStaticProps(){
+    return{props:{post:""}}
 }
 
-const Post = ({ frontMatter, content }) => {
+export async function getStaticPaths(){
+    const files = fs.readdirSync('posts')
+    const paths = files.map((filename) => ({
+        params:{
+            slug:filename.replace('.md', '')
+        }
+    })  
+    )
+    return{
+        paths,
+        fallback:false
+    }
+}
+
+const Post = () => {
     return (
-      <div>
-        <h1>{frontMatter.title}</h1>
-        <div>{content}</div>
-      </div>
-    );
-  };
-  
-  export default Post;
-  
+        <div>
+            contents here
+        </div>
+    )
+}
