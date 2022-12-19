@@ -9,12 +9,6 @@ import {Main} from '../components/main'
 import ReactDOM from 'react'
 import App from '../components/app'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
 
 //export header component
