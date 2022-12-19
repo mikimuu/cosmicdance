@@ -59,7 +59,6 @@ export default function Home({ posts }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Header />
-    <Threecube />
     <div className="my-8">
       <div className="grid grid-cols-3 gap-4">
         {posts.map((post) => (
