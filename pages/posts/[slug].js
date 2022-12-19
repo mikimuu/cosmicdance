@@ -1,23 +1,23 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import {marked} from 'marked';
-import markdownit from 'markdown-it';
-import Image from 'next/image';
-//import remarkToc
-import remarkToc from 'remark-toc';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import rehypeSlug from 'rehype-slug';
-
-
 
 export async function getStaticProps({ params }) {
-    const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
-    const { data, content } = matter(file);
-    return { props: { frontMatter: data, content } };
-  }
+  const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
+  const { data, content } = matter(file);
+
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .process(content);
+
+  return { props: { frontMatter: data, content: result.toString() } };
+}
+
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
   const paths = files.map((fileName) => ({
@@ -25,35 +25,19 @@ export async function getStaticPaths() {
       slug: fileName.replace(/\.md$/, ''),
     },
   }));
-  console.log('paths:', paths);
   return {
     paths,
     fallback: false,
   };
 }
-const result=await unified()
-  .use(remarkParse)
-  .use(remarkToc)
-  .use(remarkRehype)
-  .use(rehypeSlug)
-  .use(rehypeStringify)
-  .process(conrtent)
+
 const Post = ({ frontMatter, content }) => {
-    return (
-      <div className="prose prose-lg max-w-none">
-        <div className="border">
-          <Image
-            src={`/${frontMatter.image}`}
-            width={1200}
-            height={700}
-            alt={frontMatter.title}
-          />
-        </div>
-        <h1 className="mt-12">{frontMatter.title}</h1>
-        <span>{frontMatter.date}</span>
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>{frontMatter.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    </div>
+  );
+};
 
 export default Post;
