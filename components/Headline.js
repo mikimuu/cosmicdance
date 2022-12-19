@@ -15,7 +15,7 @@ export  function Headline(props) {
         <h1 className={styles.title}>Cosmicdance</h1>
           <p>
             さあ started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
+            {props.code}
           </p>
     </div>
 
