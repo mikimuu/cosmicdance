@@ -4,8 +4,11 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import Image
- from 'next/image';
+import Image from 'next/image';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+
+
 export async function getStaticProps({ params }) {
   const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
   const { data, content } = matter(file);
@@ -13,6 +16,8 @@ export async function getStaticProps({ params }) {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype)
+    .use(remarkToc)
+    .use(rehypeSlug)
     .use(rehypeStringify)
     .process(content);
 
