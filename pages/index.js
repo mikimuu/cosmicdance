@@ -8,12 +8,18 @@ import Header from '../components/header'
 import {Main} from '../components/main'
 import ReactDOM from 'react-dom'
 import App from '../components/app'
+import {useEffect} from "react";
 
+useEffect(() => {
+    alert('Finished loading');
+  }, []);
 ReactDOM.render(
+  
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+
+    document.getElementById('root')
 );
 
 //export header component
@@ -78,3 +84,4 @@ export default function Home({ posts }) {
   </div>
   );
 }
+
