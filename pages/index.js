@@ -6,21 +6,8 @@ import styles from '../styles/Home.module.css'
 import {Headline} from '../components/Headline'
 import Header from '../components/header'
 import {Main} from '../components/main'
-import ReactDOM from 'react-dom'
-import App from '../components/app'
-import {useEffect} from "react";
+import rehypeSlug from 'rehype-slug'
 
-useEffect(() => {
-    alert('Finished loading');
-  }, []);
-ReactDOM.render(
-  
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-
-    document.getElementById('root')
-);
 
 //export header component
 

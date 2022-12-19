@@ -3,6 +3,13 @@ import matter from 'gray-matter';
 import {marked} from 'marked';
 import markdownit from 'markdown-it';
 import Image from 'next/image';
+//import remarkToc
+import remarkToc from 'remark-toc';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypeSlug from 'rehype-slug';
 
 
 
@@ -24,7 +31,13 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
+const result=await unified()
+  .use(remarkParse)
+  .use(remarkToc)
+  .use(remarkRehype)
+  .use(rehypeSlug)
+  .use(rehypeStringify)
+  .process(conrtent)
 const Post = ({ frontMatter, content }) => {
     return (
       <div className="prose prose-lg max-w-none">
