@@ -1,7 +1,8 @@
 import fs from 'fs';
 
 export async function getStaticProps({ params }) {
-    console.log('params:', params);
+    const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
+    console.log(file);
     return { props: { post: '' } };
   }
 export async function getStaticPaths() {
