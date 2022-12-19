@@ -19,15 +19,12 @@ import PostCard from '../components/postcard'
 
 export const getStaticProps=() => {
   const files = fs.readdirSync('posts')
-  const posts=files.map(filename => {
+  const posts=files.map((filename )=> {
     // Create slug from filename
-    const slug = filename.replace('.md', '')
+    const slug = filename.replace(/\.md$/, '')
   const fileContent=
   fs.readFileSync(`posts/${filename}`, 'utf-8');
-  const {data, content}=matter(fileContent)
-    console.log('slug', slug)
-    console.log('data', data)
-    console.log('content', content)
+  const {data}=matter(fileContent)
     return{
       slug,
       frontMatter: data,
