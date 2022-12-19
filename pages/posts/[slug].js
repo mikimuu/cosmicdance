@@ -4,8 +4,8 @@ import {marked} from 'marked'
 
 export async function getStaticProps({ params }) {
     const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
-    console.log(file);
-    return { props: { post: '' } };
+    const { data, content } = matter(file);
+    return { props: { frontMatter: data, content } };
   }
 
   export async function getStaticPaths() {
