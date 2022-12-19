@@ -5,7 +5,17 @@ import styles from '../styles/Home.module.css'
 import {Headline} from '../components/Headline'
 import Header from '../components/header'
 import {Main} from '../components/main'
-import {Threecube} from '../components/threecube'
+import { ReactDOM } from 'react'
+import App from '../components/app'
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
 //export header component
 
 import "./styles.css"
