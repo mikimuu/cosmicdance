@@ -52,7 +52,7 @@ export default function Home({ posts }) {
     </Head>
     <Header />
     <div className="my-8">
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 gap-4">
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}
