@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import {Headline} from '../components/Headline'
 import Header from '../components/header'
 import {Main} from '../components/main'
-
+import {Threecube} from '../components/threecube'
 //export header component
 
   
@@ -31,13 +31,16 @@ export const getStaticProps=() => {
     }
 
 })
-  return{
-    props: {
-      posts,
-    }
-  }
-}
+const sortedPosts = posts.sort((postA, postB) =>
+new Date(postA.frontMatter.date) > new Date(postB.frontMatter.date) ? -1 : 1
+);
 
+return {
+props: {
+  posts: sortedPosts,
+},
+};
+};
 
 
     
@@ -51,6 +54,7 @@ export default function Home({ posts }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Header />
+    <Threecube />
     <div className="my-8">
       <div className="grid grid-cols-3 gap-4">
         {posts.map((post) => (

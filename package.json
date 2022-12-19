@@ -24,11 +24,13 @@
     "rehype-stringify": "^9.0.3",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
+    "three": "^0.147.0",
     "typescript": "4.9.4",
     "unified": "^10.1.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.8",
+    "@types/three": "^0.146.0",
     "autoprefixer": "^10.4.13",
     "css": "^3.0.0",
     "post": "^0.0.1",
