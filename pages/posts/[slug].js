@@ -1,5 +1,8 @@
 import fs from 'fs';
 import matter from 'gray-matter';
+import {marked} from 'marked';
+import markdownit from 'markdown-it';
+
 
 export async function getStaticProps({ params }) {
     const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
@@ -22,9 +25,9 @@ export async function getStaticPaths() {
 
 const Post = ({ frontMatter, content }) => {
     return (
-      <div>
+      <div className='prose'>
         <h1>{frontMatter.title}</h1>
-        <div>{content}</div>
+        <div dangerouslySetInnerHTML={{__html:marked(content)}}></div>
       </div>
     );
   };
