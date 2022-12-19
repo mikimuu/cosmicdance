@@ -19,7 +19,6 @@ ReactDOM.render(
 
 //export header component
 
-import "./styles.css"
   
 
 //load markdown file in posts folder using fs module and readdirSync
