@@ -1,9 +1,9 @@
 import fs from 'fs';
 
-export async function getStaticProps() {
-  return { props: { post: '' } };
-}
-
+export async function getStaticProps({ params }) {
+    console.log('params:', params);
+    return { props: { post: '' } };
+  }
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
   const paths = files.map((fileName) => ({
