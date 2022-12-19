@@ -23,17 +23,6 @@ import PostCard from '../components/postcard'
 
 
 
-createRoot(document.getElementById("root")).render(
-  <>
-    <Underlay />
-    <Suspense fallback={null}>
-      <App />
-    </Suspense>
-    <Overlay />
-  </>,
-)
-
-
 
 
 export const getStaticProps=() => {
