@@ -7,7 +7,11 @@ import Header from '../components/header'
 import {Main} from '../components/main'
 import {Threecube} from '../components/threecube'
 //export header component
-
+import { createRoot } from "react-dom/client"
+import { Suspense } from "react"
+import { App } from "../components/App"
+import { Underlay, Overlay } from "../components/DirtyFigmaExport"
+import "./styles.css"
   
 
 //load markdown file in posts folder using fs module and readdirSync
@@ -16,6 +20,21 @@ import path from 'path'
 import matter from 'gray-matter'
 import Link from 'next/link'
 import PostCard from '../components/postcard'
+
+
+
+createRoot(document.getElementById("root")).render(
+  <>
+    <Underlay />
+    <Suspense fallback={null}>
+      <App />
+    </Suspense>
+    <Overlay />
+  </>,
+)
+
+
+
 
 export const getStaticProps=() => {
   const files = fs.readdirSync('posts')
