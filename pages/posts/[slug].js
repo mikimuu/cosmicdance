@@ -7,24 +7,10 @@ import rehypeStringify from 'rehype-stringify';
 import Image from 'next/image';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
-import toc from 'mdast-util-toc'
 
-const getToc = (options)=> {
-  return (node) => {
-    const result = toc(node, options)
-    node.children = [result.map]
-  }
-}
 
-const toc = await unified()
-  .use(remarkParse)
-  .use(getToc,{
-    tight: true,
-    heading: '目录',
-  })
-  .process(content)
-  .use(remarkRehype)
-  .use(rehypeStringify)
+
+
 
 export async function getStaticProps({ params }) {
   const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
@@ -41,7 +27,6 @@ export async function getStaticProps({ params }) {
   return { props: { 
     frontMatter: data,
     content: result.toString(),
-    toc: toc.toString(),
     slug:params.slug,
    }
    };
@@ -83,13 +68,6 @@ const Post = ({ frontMatter, content }) => {
       </div>
       <div className='grid grid-cols-3 gap-4'>
         <div className='col-span-9'>{toReactNode(content)}</div>
-        <div className='col-span-3'>{toReactNode(toc)}</div>
-          <div
-            className='sticky top-[50]px'
-            dangerouslySetInnerHTML={{ __html: toc }}
-            > 
-          </div>
-
           </div>
       </div>
     </div>
