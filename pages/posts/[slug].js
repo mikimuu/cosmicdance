@@ -9,6 +9,15 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 
 
+const result = await unified()
+.use(remarkParse)
+.use(remarkToc,{
+  heading:'mokuji',
+})
+.use(remarkRehype)
+.use(rehypeSlug)
+.use(rehypeStringify)
+.process(content)
 
 
 
