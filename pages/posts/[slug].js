@@ -7,7 +7,7 @@ import rehypeStringify from 'rehype-stringify';
 import Image from 'next/image';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
-import {toc} from 'mdast-util-toc'
+import toc from 'mdast-util-toc'
 
 const getToc = (options)=> {
   return (node) => {
