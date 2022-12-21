@@ -84,10 +84,10 @@ const Post = ({ frontMatter, content }) => {
       <div className='grid grid-cols-3 gap-4'>
         <div className='col-span-9'>{toReactNode(content)}</div>
         <div className='col-span-3'>{toReactNode(toc)}</div>
-        <div
-          className='sticky top-[50]px'
-          dangerouslySetInnerHTML={{ __html: toc }}
-          > 
+          <div
+            className='sticky top-[50]px'
+            dangerouslySetInnerHTML={{ __html: toc }}
+            > 
           </div>
 
           </div>
